@@ -1,23 +1,37 @@
-const bcrypt = require('bcrypt');
-const
+/**
+ * transactions.routes.ts
+ * Express router middleware.
+ * Needs to communicate with database.
+ */
+import { getExistingAccount, updateAccountBalance } from '../adapters/DatabaseAdapter';
 
 
-// Encryption
-const saltRounds = 10;
-const password = process.env.ENCRYPTION_KEY;
+module.exports = function (router) {
+    router.get('/transactions/:account_id', (req: Request, res: Response) => {
+        const response = {
+            body: {}
+        };
 
-// 1. WALLET ACTIONS & TRANSACTIONS
 
-export function getExistingWallet(app: bcrypt) {
-    app.get('/fetch/:id/', async (req, res) => {
-        // Authenticate the request
-        const { id } = req.params;
-        const storedId = await _fetchExistingWallet(id);
-
-        const idMatch = await bcrypt.compare(id, storedId)
+        res.send(response)
     })
-}
 
-function _fetchExistingWallet(id: string) {
+    router.post('/transactions/deposit/:account_id/:amount', (req, res) => {
+        const { account_id, amount } = req.params;
 
+
+        const response = {
+            body: {}
+        };
+        res.send(response)
+    })
+
+    app.post('/transactions/withdraw/:account_id/:amount', (req, res) => {
+        const response = {
+            body: {}
+        };
+        res.send(response)
+    })
+
+    return router;
 }

@@ -14,7 +14,7 @@ describe('AliasMethod.ts', () => {
 
     // This is just the average amount of clients connecting to the site
     // over a 24-hour period
-    const AVG_PLAYER_COUNT = 10;
+    const AVG_PLAYER_COUNT = 100;
     // Lets assume a portion of our total player base is afk 50% of the time
     // and is not betting during those times
     const ACTIVE_PLAYERS = AVG_PLAYER_COUNT * 0.5;

@@ -1,6 +1,20 @@
+/**
+ * Account.model.ts
+ * Used for mongoose api to interact with mongodb database
+ * exports the Account type and AccountModel seen below.
+ */
 const bcrypt = require('bcrypt');
 const { Schema } = mongoose;
 const SALT_WORK_FACTOR = 10;
+
+type Account = {
+    id: string,
+    label: string,
+    wallet: string,
+    balance: number,
+    unsettled: number,
+    canWithdraw: boolean
+}
 
 const AccountSchema = new Schema({
     _id: Schema.Types.ObjectId,
@@ -27,6 +41,10 @@ const AccountSchema = new Schema({
     unsettled: {
         type: Number,
         required: true,
+    },
+    canWithdraw: {
+        type: Boolean,
+        default: false,
     }
 })
 
@@ -70,6 +88,9 @@ function _encrypt(val: String | Number): Promise<string> {
             }
         })
     });
-
-
 }
+
+module.exports = {
+    Account,
+    AccountModel: mongoose.model('Account', AccountSchema),
+};
